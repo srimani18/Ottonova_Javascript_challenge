@@ -1,24 +1,28 @@
 <h1 style="text-align: center;">
-  Fetch Json Data using Rest Api
+  Ottonova Javacript Test
 </h1>
-<br>
-<table class="table">
+<div class="table-responsive container mt-5">
+<table class="table table-borderless table-responsive card-1 p-4">
   <thead class="thead-dark">
-  <tr>
+  <tr class="border-bottom">
     <th *ngFor="let item of tableHeaders">
         {{item}}
     </th>
   </tr>
   </thead>
-  <tr *ngFor="let city of cities"> 
-    <td>{{city.name}}</td>
-    <td>{{city.name_native}}</td>
-    <td>{{city.country}}</td>
-    <td>{{city.continent}}</td>
-    <td>{{city.latitude}}</td>
-    <td>{{city.longitude}}</td>
-    <td>{{city.population}}</td>
-    <td>{{city.founded}}</td>
-    <td>{{city.landmarks}}</td>
-  </tr>
+  <tbody>
+    <tr class="border-bottom" *ngFor="let city of cities"> 
+      <td>{{city.name}}</td>
+      <td>{{city.name_native}}</td>
+      <td>{{city.country}}</td>
+      <td>{{city.continent}}</td>
+      <td>{{city.latitude}}</td>
+      <td>{{city.longitude}}</td>
+      <td>{{city.population}}</td>
+      <td>{{city.founded}}</td>
+      <td>{{city.landmarks}}</td>
+    </tr>
+  </tbody>
+  
 </table>
+</div>
