@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Cities } from '../model/cities';
 
 @Injectable({
@@ -8,15 +9,18 @@ import { Cities } from '../model/cities';
 })
 export class CitiesService {
 
-  constructor(private http: HttpClient) { 
-    this.getJSON().subscribe(data => {
-      console.log(data);
-  },
-  err => console.error(err),
-  () => console.log('Wiki Items Geladen'));
-  }
-  public getJSON(): Observable<any> {
-    return this.http.get("./assets/cities.json");
+  url = '../../assets/cities.json';
+      city: Cities[] = [];
+     constructor(protected http: HttpClient) {
+     }
 
-  }
+        getCitiesList() {
+          return this.http.get(this.url)
+            .pipe(map((data: any) => {return this.city = data;
+                }), catchError(error => {
+                return throwError('Its a Trap!')
+              })
+            );
+        }
+  
 }

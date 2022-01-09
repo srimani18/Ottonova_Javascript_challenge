@@ -8,11 +8,9 @@ import { CitiesService } from './service/cities.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'FetchJsonWithRestApi';
+ cities: Cities[] = [];
 
-  constructor( private cityService: CitiesService){}
-
-  tableHeaderProperties = ["name",
+ tableHeaders = ["name",
   "native name",
   "country",
   "continent",
@@ -22,22 +20,18 @@ export class AppComponent implements OnInit{
   "founded",
   "landmarks"];
 
-  columns = ["name",
-  "name_native",
-  "country",
-  "continent",
-  "latitude",
-  "longitude",
-  "population",
-  "founded",
-  "landmarks"];
-  
-  cities: Cities[] = [];
-
-  ngOnInit(): void {
-      this.cityService.getJSON().subscribe((data) =>{
-        this.cities = data;
-      }, (error) => {console.log(error)})
+  constructor( private cityService: CitiesService){
   }
 
+  ngOnInit() {
+    this.getCityData();
+  }
+  getCityData() {
+    this.cityService.getCitiesList().subscribe(data=>{
+      this.cities = data.cities;
+      //console.log(this.cities);
+      this.cities.forEach(a => a.name = a.name);
+    })
+  }
+  
 }

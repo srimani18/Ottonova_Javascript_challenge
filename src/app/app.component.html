@@ -2,15 +2,23 @@
   Fetch Json Data using Rest Api
 </h1>
 <br>
-<table id="cities">
+<table class="table">
+  <thead class="thead-dark">
   <tr>
-    <th *ngFor="let item of tableHeaderProperties">
+    <th *ngFor="let item of tableHeaders">
         {{item}}
     </th>
   </tr>
+  </thead>
   <tr *ngFor="let city of cities"> 
-    <td *ngFor="let col of columns">
-       {{city[col]}}
-    </td>
+    <td>{{city.name}}</td>
+    <td>{{city.name_native}}</td>
+    <td>{{city.country}}</td>
+    <td>{{city.continent}}</td>
+    <td>{{city.latitude}}</td>
+    <td>{{city.longitude}}</td>
+    <td>{{city.population}}</td>
+    <td>{{city.founded}}</td>
+    <td>{{city.landmarks}}</td>
   </tr>
 </table>
